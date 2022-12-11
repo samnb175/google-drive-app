@@ -2,7 +2,7 @@ let videosListSection = document.querySelector('.videos-list');
 const videoPlayerSource = document.querySelector('.video-player source');
 const videoPlayer = document.querySelector('.video-player');
 const currentURL = window.location.origin;
-const urlToContent = "https://driveapi.pythonanywhere.com/logout?url=" + currentURL;
+const urlToContent = "https://driveapi.pythonanywhere.com/logout?url=" + currentURL + '/index.html';
 
 // document.querySelector('.console').innerHTML = currentURL;
 
