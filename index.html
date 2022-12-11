@@ -8,7 +8,7 @@
     <title>Hello</title>
 </head>
 <body>
-    <!-- <h1 class="console"></h1> -->
+    <h1 class="console"></h1>
     <div class="container">
         <div class="sign-in-area">
             <h1>Welcome!</h1>
@@ -17,13 +17,25 @@
         </div>
     </div>
     <script>
-        const queryString = window.location.href;
+        const queryString = clipUrl(window.location.href, 'index.html', false);
         const urlToContent = "https://driveapi.pythonanywhere.com/login?url=" + queryString + "getData.html"
+
+        function clipUrl(str, to, include) {
+            if (include === void 0) {
+            include = false;
+            }
+            if (str.includes(to)) {
+                return str.substr(0, str.indexOf(to) + (include ? to.length : 0));
+            } else {
+                return str.substr(0, str.length);
+            }
+        }
+
         function signIn() {
             return window.location.assign(urlToContent);
         }     
         
-        // document.querySelector('.console').innerHTML = urlToContent;
+        document.querySelector('.console').innerHTML = queryString;
     </script>
 </body>
 </html>

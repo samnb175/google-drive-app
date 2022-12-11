@@ -62,8 +62,8 @@ function sortByKey(data, key) {
 function getDrive(driveArray) {
     // console.log(driveArray)
     let sortedDriveArray = sortByKey(driveArray, "folderName")
-    
-    sortedDriveArray.forEach((file) => {    
+    let indexOfFolderWithFirstVideo = [];
+    sortedDriveArray.forEach((file, index) => {    
         let folderEle = createElement('div', ['folder'], file.folderId, videosListSection)
         let folderEleTitle = createElement('h2', ['folder-title'], '', folderEle)
         folderEleTitle.innerHTML = file.folderName;
@@ -72,11 +72,19 @@ function getDrive(driveArray) {
         let sortedfolderContent = sortByKey(file.folderContent, "name")
         // console.log(sortedfolderContent)
         if (sortedfolderContent.length > 0) {
-            sortedfolderContent.forEach((video) => {
+            indexOfFolderWithFirstVideo.length == 0 ? indexOfFolderWithFirstVideo.push(index) : null;
+            sortedfolderContent.forEach((video,i) => {
                 // console.log(video)
                 let folderContentEle = createElement('div', ['video'], '', folderEle)
                 let videoSourceEle = createElement('h3', [], '', folderContentEle)
                 videoSourceEle.innerHTML = video.name;
+
+                if (i == 0 && index == indexOfFolderWithFirstVideo[0]) {
+                    videoPlayerSource.setAttribute('src', video.webContentLink+'&confirm=t');
+                    videoPlayer.load();
+                    videoPlayer.play(); 
+                } 
+
                 videoSourceEle.addEventListener('click', () => {
                     videoPlayer.pause();
                     videoPlayerSource.setAttribute('src', video.webContentLink+'&confirm=t'); 
