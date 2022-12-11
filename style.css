@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #2C3333;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* .container {
+    position: relative;
+} */
+
+.sign-in-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #191e20;
+    filter: drop-shadow(0 0.2rem 0.35rem #1B2430);
+    width: 35vw;
+    height: 450px;
+    color: #fff;
+}
+
+.btn {
+    padding: 15px 75px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    border: none;
+    background-color: #1E5128;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #4E9F3D;
+    color: #fff;
+    cursor: pointer;
+}
+
+.sign-in-area h1 {
+    font-size: 2.5rem;
+    letter-spacing: 4px;
+    margin-bottom: 5%;
+    text-transform: uppercase;
+}
+
+.sign-in-area h3 {
+    letter-spacing: 4px;
+    margin-bottom: 20%;
+    font-weight: 100;
+}
+
+.btn-sign-out {
+    margin: 1% 0 0 83%;
+}
+
+.contents {
+    display: flex;
+    flex-wrap: wrap;
+    color: #fff;
+}
+
+.contents video {
+    /* position: sticky; */
+    margin: 30px auto 0;
+    filter: drop-shadow(0 0.2rem 0.35rem #1B2430);
+    /* width="1067" height="600" */
+    width: 64%;
+    height: 36%;
+}
+
+.videos-list {
+    background-color: #414a4a;
+    box-shadow: inset 0.2rem -0.2rem 0.3rem #3a4040;
+    width: 500px;
+    margin: 30px auto 0;
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+/*SCROLLBAR MODIFICATIONS*/
+.videos-list::-webkit-scrollbar {
+    width: 16px;
+}
+
+.videos-list::-webkit-scrollbar-thumb {
+    background: #909090;
+}
+.videos-list::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+
+.video {
+    width: 450px;
+    height: 40px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.video:hover {
+    color: #0d1011;
+}
+
+.video h3 {
+    font-weight: 100;
+}
+
+.folder {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.folder-title {
+    padding: 5px 0 5px 10px ;
+    margin-bottom: 10px;
+    width: 100%;
+    background-color: #394141;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+}
+
+
+@media screen and (max-width: 850px) {
+    .sign-in-area {
+        width: 75vw;
+    }
+
+    .contents video {
+        width: 100%;
+    }
+
+    .btn-sign-out {
+        margin: 1% 0 0 75%;
+        padding: 15px 10px;
+        font-size: 0.8rem;
+    }
+
+    .videos-list {
+        margin: 30px auto 0;
+        height: 50vh;
+        overflow-y: scroll;
+    }
+
+    .video {
+        font-size: 0.8rem;
+    }
+
+    .folder-title {
+        font-size: 0.9rem;
+    }
+
+}
