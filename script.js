@@ -1,11 +1,17 @@
 let videosListSection = document.querySelector('.videos-list');
 const videoPlayerSource = document.querySelector('.video-player source');
 const videoPlayer = document.querySelector('.video-player');
-const currentURL = window.location.origin;
-const urlToContent = "https://driveapi.pythonanywhere.com/logout?url=" + currentURL + '/index.html';
+
+const currentURL = clipUrl(window.location.href, "getData", false);
+const urlToContent = "https://driveapi.pythonanywhere.com/logout?url=" + currentURL;
 
 // document.querySelector('.console').innerHTML = currentURL;
-
+function clipUrl(str, to, include) {
+    if (include === void 0) {
+      include = false;
+    }
+    return str.substr(0, str.indexOf(to) + (include ? to.length : 0));
+  }
 
 function signOut() {
     return window.location.assign(urlToContent);
