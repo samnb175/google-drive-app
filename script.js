@@ -72,6 +72,7 @@ function addFolderExpand(ele, className, classToToggle) {
 
 function getDrive(driveArray) {
     let rootElement = [];
+    let videoCounter = 0;
     // console.log(driveArray)
     let sortedDriveArray = sortByKey(driveArray, "folderName")
     let indexOfFolderWithFirstVideo = [];
@@ -101,16 +102,30 @@ function getDrive(driveArray) {
                 let folderContentEle = createElement('div', ['video'], '', folderEle)
                 let videoSourceEle = createElement('h3', [], '', folderContentEle)
                 videoSourceEle.innerHTML = video.name;
+                
+                //Set video link as an attribute to the element
+                videoSourceEle.setAttribute('data-video-src', video.webContentLink+'&confirm=t');
 
+                //Set a counter on each videos
+                videoSourceEle.setAttribute('data-video-num', videoCounter);
+                videoCounter++;
+
+                //Load first video 
                 if (i == 0 && index == indexOfFolderWithFirstVideo[0]) {
                     videoPlayerSource.setAttribute('src', video.webContentLink+'&confirm=t');
+                    videoPlayerSource.setAttribute('data-video-playing', videoSourceEle.getAttribute('data-video-num'));
+                    videoSourceEle.classList.add('selected-video');
                     videoPlayer.load();
-                    videoPlayer.play(); 
+                    // videoPlayer.play();
                 } 
 
+                //Add click listener to each video label to be able to change videos on click
                 videoSourceEle.addEventListener('click', () => {
+                    document.querySelector('.selected-video').classList.remove('selected-video');
+                    videoSourceEle.classList.add('selected-video');                
                     videoPlayer.pause();
                     videoPlayerSource.setAttribute('src', video.webContentLink+'&confirm=t'); 
+                    videoPlayerSource.setAttribute('data-video-playing', videoSourceEle.getAttribute('data-video-num'));
                     videoPlayer.load();
                     videoPlayer.play();                   
                 })
@@ -122,6 +137,21 @@ function getDrive(driveArray) {
     mainTitle.innerHTML = rootElement[0].folderName;
     let rootDiv = document.getElementById(rootElement[0].folderId)
     rootDiv.remove();
+}
+
+function playNext(videoEle) {
+    const srcEle = videoEle.querySelector('source');
+    const currentVideo = parseInt(srcEle.getAttribute('data-video-playing'));
+    const nextVideo = currentVideo + 1;
+
+    document.querySelector('.selected-video').classList.remove('selected-video');
+    document.querySelector('[data-video-num = "' + nextVideo + '"]').classList.add('selected-video');
+
+    const nextVideoSrc = document.querySelector('[data-video-num = "' + nextVideo + '"]').getAttribute('data-video-src')
+    videoPlayerSource.setAttribute('src', nextVideoSrc); 
+    videoPlayer.load();
+    videoPlayer.play();
+    // console.log(nextVideoSrc);
 }
 
 

@@ -150,6 +150,10 @@ body {
     overflow: hidden;
 }
 
+.selected-video {
+    color: #44af2f;
+}
+
 
 @media screen and (max-width: 850px) {
     .sign-in-area {

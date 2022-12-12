@@ -13,7 +13,7 @@
         <button class="btn btn-sign-out" onclick="signOut()">Sign Out</button>
         <h1 class="title"></h1>
         <div class="contents">
-            <video class="video-player" autoplay controls>
+            <video class="video-player" autoplay controls onended="playNext(this)">
                 <source src="" type="video/mp4">
             </video>
             <div class="videos-list"></div>
