@@ -64,6 +64,12 @@ body {
     margin: 1% 0 0 83%;
 }
 
+.title {
+    color: #fff;
+    width: 64%;
+    margin: 0 20%;
+}
+
 .contents {
     display: flex;
     flex-wrap: wrap;
@@ -105,6 +111,7 @@ body {
     height: 40px;
     margin-left: 10px;
     cursor: pointer;
+    transition: height 0.5s, color 0.3s;
 }
 
 .video:hover {
@@ -120,6 +127,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    cursor: pointer;
 }
 
 .folder-title {
@@ -129,6 +137,12 @@ body {
     background-color: #394141;
     letter-spacing: 1px;
     font-size: 1.1rem;
+}
+
+.folder-collapse {
+    height: 0;
+    color: transparent;
+    overflow: hidden;
 }
 
 
@@ -146,6 +160,12 @@ body {
         padding: 15px 10px;
         font-size: 0.8rem;
     }
+    
+    .title {
+        width: 100%;
+        margin: 25px 5% 0;
+        font-size: 1.5rem;
+    }
 
     .videos-list {
         margin: 30px auto 0;
@@ -160,5 +180,4 @@ body {
     .folder-title {
         font-size: 0.9rem;
     }
-
 }

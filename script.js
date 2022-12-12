@@ -1,6 +1,7 @@
 let videosListSection = document.querySelector('.videos-list');
 const videoPlayerSource = document.querySelector('.video-player source');
 const videoPlayer = document.querySelector('.video-player');
+const mainTitle = document.querySelector('.title');
 
 const currentURL = clipUrl(window.location.href, "getData", false);
 const urlToContent = "https://driveapi.pythonanywhere.com/logout?url=" + currentURL;
@@ -59,7 +60,18 @@ function sortByKey(data, key) {
     return sortedData;
 } 
 
+function addFolderExpand(ele, className, classToToggle) {
+    const allChildren = ele.querySelectorAll('.'+className);
+
+    ele.addEventListener('click', () => {
+        allChildren.forEach((child) => {
+            child.classList.toggle(classToToggle);
+        })
+    })
+}
+
 function getDrive(driveArray) {
+    let rootElement = [];
     // console.log(driveArray)
     let sortedDriveArray = sortByKey(driveArray, "folderName")
     let indexOfFolderWithFirstVideo = [];
@@ -68,7 +80,18 @@ function getDrive(driveArray) {
         let folderEleTitle = createElement('h2', ['folder-title'], '', folderEle)
         folderEleTitle.innerHTML = file.folderName;
 
+        if (rootElement.length == 0) {
+            rootElement.push(file);
+        } else {
+            if (file.folderParent == rootElement[0].folderId) {
+                null;
+            } else {
+                rootElement[0] = file;
+            }
+        }
+        
 
+        
         let sortedfolderContent = sortByKey(file.folderContent, "name")
         // console.log(sortedfolderContent)
         if (sortedfolderContent.length > 0) {
@@ -94,7 +117,11 @@ function getDrive(driveArray) {
             })
 
         }
+        addFolderExpand(folderEle, 'video', 'folder-collapse');
     })
+    mainTitle.innerHTML = rootElement[0].folderName;
+    let rootDiv = document.getElementById(rootElement[0].folderId)
+    rootDiv.remove();
 }
 
 
