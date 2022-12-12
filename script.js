@@ -63,7 +63,7 @@ function sortByKey(data, key) {
 function addFolderExpand(ele, className, classToToggle) {
     const allChildren = ele.querySelectorAll('.'+className);
 
-    ele.addEventListener('click', () => {
+    ele.querySelector('h2').addEventListener('click', () => {
         allChildren.forEach((child) => {
             child.classList.toggle(classToToggle);
         })
