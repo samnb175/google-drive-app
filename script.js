@@ -95,45 +95,50 @@ function getDrive(driveArray) {
         
 
         console.log({file: file})
-        let sortedfolderContent = sortByKey(file.folderContent, "name")
-        console.log(sortedfolderContent)
-        if (sortedfolderContent.length > 0) {
-            indexOfFolderWithFirstVideo.length == 0 ? indexOfFolderWithFirstVideo.push(index) : null;
-            sortedfolderContent.forEach((video,i) => {
-                // console.log(video)
-                let folderContentEle = createElement('div', ['video'], '', folderEle)
-                let videoSourceEle = createElement('h3', [], '', folderContentEle)
-                videoSourceEle.innerHTML = video.name;
-                
-                //Set video link as an attribute to the element
-                videoSourceEle.setAttribute('data-video-src', video.webContentLink+'&confirm=t');
+        if (index != 0) {
+            let sortedfolderContent = sortByKey(file.folderContent, "name")
+            console.log(sortedfolderContent)
 
-                //Set a counter on each videos
-                videoSourceEle.setAttribute('data-video-num', videoCounter);
-                videoCounter++;
+            if (sortedfolderContent.length > 0) {
+                indexOfFolderWithFirstVideo.length == 0 ? indexOfFolderWithFirstVideo.push(index) : null;
+                sortedfolderContent.forEach((video,i) => {
+                    // console.log(video)
+                    let folderContentEle = createElement('div', ['video'], '', folderEle)
+                    let videoSourceEle = createElement('h3', [], '', folderContentEle)
+                    videoSourceEle.innerHTML = video.name;
 
-                //Load first video 
-                if (i == 0 && index == indexOfFolderWithFirstVideo[0]) {
-                    videoPlayerSource.setAttribute('src', video.webContentLink+'&confirm=t');
-                    videoPlayerSource.setAttribute('data-video-playing', videoSourceEle.getAttribute('data-video-num'));
-                    videoSourceEle.classList.add('selected-video');
-                    videoPlayer.load();
-                    // videoPlayer.play();
-                } 
+                    //Set video link as an attribute to the element
+                    videoSourceEle.setAttribute('data-video-src', video.webContentLink+'&confirm=t');
 
-                //Add click listener to each video label to be able to change videos on click
-                videoSourceEle.addEventListener('click', () => {
-                    document.querySelector('.selected-video').classList.remove('selected-video');
-                    videoSourceEle.classList.add('selected-video');                
-                    videoPlayer.pause();
-                    videoPlayerSource.setAttribute('src', video.webContentLink+'&confirm=t'); 
-                    videoPlayerSource.setAttribute('data-video-playing', videoSourceEle.getAttribute('data-video-num'));
-                    videoPlayer.load();
-                    videoPlayer.play();                   
+                    //Set a counter on each videos
+                    videoSourceEle.setAttribute('data-video-num', videoCounter);
+                    videoCounter++;
+
+                    //Load first video 
+                    if (i == 0 && index == indexOfFolderWithFirstVideo[0]) {
+                        videoPlayerSource.setAttribute('src', video.webContentLink+'&confirm=t');
+                        videoPlayerSource.setAttribute('data-video-playing', videoSourceEle.getAttribute('data-video-num'));
+                        videoSourceEle.classList.add('selected-video');
+                        videoPlayer.load();
+                        // videoPlayer.play();
+                    } 
+
+                    //Add click listener to each video label to be able to change videos on click
+                    videoSourceEle.addEventListener('click', () => {
+                        document.querySelector('.selected-video').classList.remove('selected-video');
+                        videoSourceEle.classList.add('selected-video');                
+                        videoPlayer.pause();
+                        videoPlayerSource.setAttribute('src', video.webContentLink+'&confirm=t'); 
+                        videoPlayerSource.setAttribute('data-video-playing', videoSourceEle.getAttribute('data-video-num'));
+                        videoPlayer.load();
+                        videoPlayer.play();                   
+                    })
                 })
-            })
 
+            }
         }
+            
+       
         addFolderExpand(folderEle, 'video', 'folder-collapse');
     })
     mainTitle.innerHTML = rootElement[0].folderName;
