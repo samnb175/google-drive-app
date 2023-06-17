@@ -73,9 +73,11 @@ function addFolderExpand(ele, className, classToToggle) {
 function getDrive(driveArray) {
     let rootElement = [];
     let videoCounter = 0;
-    // console.log(driveArray)
+    console.log({driveArray})
     let sortedDriveArray = sortByKey(driveArray, "folderName")
     let indexOfFolderWithFirstVideo = [];
+    console.log({sortedDriveArray})
+    
     sortedDriveArray.forEach((file, index) => {    
         let folderEle = createElement('div', ['folder'], file.folderId, videosListSection)
         let folderEleTitle = createElement('h2', ['folder-title'], '', folderEle)
