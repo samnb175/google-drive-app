@@ -94,7 +94,7 @@ function getDrive(driveArray) {
         }
         
 
-        console.log({folderContent: file.folderContent})
+        console.log({file: file})
         let sortedfolderContent = sortByKey(file.folderContent, "name")
         console.log(sortedfolderContent)
         if (sortedfolderContent.length > 0) {
