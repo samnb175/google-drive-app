@@ -92,9 +92,9 @@ function getDrive(driveArray) {
         }
         
 
-        
+        console.log({folderContent: file.folderContent})
         let sortedfolderContent = sortByKey(file.folderContent, "name")
-        // console.log(sortedfolderContent)
+        console.log(sortedfolderContent)
         if (sortedfolderContent.length > 0) {
             indexOfFolderWithFirstVideo.length == 0 ? indexOfFolderWithFirstVideo.push(index) : null;
             sortedfolderContent.forEach((video,i) => {
