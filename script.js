@@ -73,7 +73,7 @@ function addFolderExpand(ele, className, classToToggle) {
 function getDrive(driveArray) {
     let rootElement = [];
     let videoCounter = 0;
-    console.log({driveArray})
+    console.log({driveArray: JSON.stringify(driveArray)})
     let sortedDriveArray = sortByKey(driveArray, "folderName")
     let indexOfFolderWithFirstVideo = [];
     console.log({sortedDriveArray})
